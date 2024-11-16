@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const { type } = require("node:os");
+const jwt=require("jsonwebtoken");
 
 const userSchema= new mongoose.Schema({
     firstName:{
@@ -48,6 +49,14 @@ throw new Error("Gender is not Valid");
     }
 });
 
+
+userSchema.methods.getJWT =function(){
+    const user=this;
+    const key="Harsha";
+    const token=jwt.sign({_id:user._id},key,{expiresIn:"2h"});
+    
+    return token;
+}
 const userModel=mongoose.model("User",userSchema);
 
 module.exports=userModel;

@@ -1,7 +1,7 @@
 const validateSignUpData=require("../util/validation")
 const User=require("../models/user")
 const bcrypt=require("bcrypt")
-
+const jwt=require("jsonwebtoken");
 
 
 module.exports.signUp= async(req)=>{
@@ -42,7 +42,11 @@ module.exports.signIn=async (req) => {
          throw new Error("Password is Wrong ! ,Please Enter Correct Password");
       }
 
-      return {status:200,result:"User have successfully Logged In"};
+      
+      //create token 
+      const token=user.getJWT();
+
+      return {status:200,result:"User have successfully Logged In" ,token:token};
    }
    catch(e){
       return {status:400,result:e.message}
