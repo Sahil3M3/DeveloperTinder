@@ -4,7 +4,7 @@ const authRoutes=express.Router();
 const authController=require("../controllers/auth")
 
 
-authRoutes.get("/signup",authController.signup)
-
+authRoutes.post("/signup",authController.signup);
+authRoutes.post("/signin",authController.signIn);
 
 module.exports=authRoutes;

@@ -1,4 +1,4 @@
-const mongoose=require("node:module");
+const mongoose=require("mongoose");
 const { type } = require("node:os");
 
 const userSchema= new mongoose.Schema({
@@ -15,7 +15,7 @@ const userSchema= new mongoose.Schema({
         type:String,
         lowercase:true,
         required:true,
-        uniqne:true,
+        unique:true,
 trim:true,
     },
     password:{
@@ -48,6 +48,6 @@ throw new Error("Gender is not Valid");
     }
 });
 
-const userModel=mongoose.Module("User",userSchema);
+const userModel=mongoose.model("User",userSchema);
 
 module.exports=userModel;
