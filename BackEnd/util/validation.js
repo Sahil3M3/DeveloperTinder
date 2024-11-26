@@ -16,5 +16,13 @@ else if(!validator.isEmail(emailId)){
 
 
 }
+validateEditProfileData=(req)=>{
 
-module.exports=validateSignUpData
+    const allowedEditFields = ["firstName","lastName","photoUrl","age","gender","emailId","about","skills"];
+
+    const isEditAllowed=Object.keys(req.body).every((field)=>allowedEditFields.includes(field));
+
+    return isEditAllowed;
+}
+
+module.exports={validateSignUpData,validateEditProfileData}

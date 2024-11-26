@@ -1,4 +1,4 @@
-const validateSignUpData=require("../util/validation")
+const {validateSignUpData}=require("../util/validation")
 const User=require("../models/user")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken");
@@ -52,3 +52,4 @@ module.exports.signIn=async (req) => {
       return {status:400,result:e.message}
    }
 }
+

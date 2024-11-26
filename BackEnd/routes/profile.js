@@ -4,6 +4,8 @@ const profileController=require("../controllers/profile");
 const auth=require("../middlewares/auth");
 
 
-profileRouter.get('/',auth,profileController.getProfile);
+profileRouter.get('/view',auth,profileController.getProfile);
+profileRouter.patch('/edit',auth,profileController.edit);
+
 
 module.exports=profileRouter;
