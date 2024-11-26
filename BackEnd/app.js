@@ -18,7 +18,7 @@ connectDb()
     app.listen(3000,()=>{
         console.log("Server is listing on 3000");
     });     
-    console.log("database connection is  done ");
+    console.log("Database is Connection");
     
 }).catch(()=>{
     console.log("Error");
