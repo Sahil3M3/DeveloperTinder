@@ -18,6 +18,6 @@ module.exports.logout=async (req,res,next) => {
     res.cookie("token",null,{
         expires:new Date(Date.now())
     })
-    res.send();
+    res.json("User have LogOut ");
     
 }

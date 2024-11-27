@@ -46,3 +46,35 @@ throw new Error("Connection Request is already Present")
     }
     
 }
+
+module.exports.reviewRequest=async (req) => {
+
+try {
+    const loggedInUser=req.user;
+    const status=req.params.status;
+    const requestId=req.params.requestId;
+
+    const allowedStatus=["accepted","rejected"];
+
+    if(!allowedStatus.includes(status)){
+        throw new Error("Status Not Allowed");
+    }
+
+    const connectionRequest=await ConnectionRequest.findOne({
+        _id:requestId,
+        toUserId:loggedInUser._id,
+        status:"interested"
+    });
+
+   if(!connectionRequest){
+    throw new Error("Connection is not found");
+   }
+   connectionRequest.status=status;
+   await connectionRequest.save();
+return {status:200,result:"Connection request "+status};
+
+} catch (error) {
+    return {status:400,result:error.message}
+}
+    
+}

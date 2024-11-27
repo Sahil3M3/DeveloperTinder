@@ -19,7 +19,7 @@ required:true
         type:String,
 required:true,
         enum:{
-            values:["ignore","interested","accepeted","rejected"],
+            values:["ignore","interested","accepted","rejected"],
             message:`{VALUE} is incorrect status type`
         }
 
@@ -31,6 +31,8 @@ required:true,
     }
 
 )
+
+connectionRequestSchema.index({formUserId:1,toUserId:1});
 
 connectionRequestSchema.pre("save",function(next){
     const connectionRequest=this;

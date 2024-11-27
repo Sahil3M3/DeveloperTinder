@@ -6,6 +6,7 @@ const requestController=require("../controllers/request");
 
 
 requestRouter.post('/send/:status/:toUserId',auth,requestController.addRequest);
+requestRouter.post('/review/:status/:requestId',auth,requestController.reviewRequest);
 
 
  module.exports=requestRouter;
