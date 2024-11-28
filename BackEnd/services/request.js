@@ -4,7 +4,7 @@ const User=require("../models/user")
 module.exports.addNewRequest=async (req)=>{
 
     try{
-        const formUserId=req.user._id;
+        const fromUserId=req.user._id;
         const toUserId=req.params.toUserId;
         const status=req.params.status;
        const allowedStatus=["ignore","interested"];
@@ -21,8 +21,8 @@ if(!toUser){
 //if Connection is not double 
 const existingConnectionRequest=await ConnectionRequest.findOne({
     $or:[
-{formUserId,toUserId},
-{formUserId:toUserId,toUserId:formUserId}
+{fromUserId,toUserId},
+{fromUserId:toUserId,toUserId:fromUserId}
     ]
 })
 
@@ -32,7 +32,7 @@ throw new Error("Connection Request is already Present")
 
 
        const connectionRequest=new ConnectionRequest( {
-           formUserId,toUserId,status
+           fromUserId,toUserId,status
        })
        
        await connectionRequest.save()
