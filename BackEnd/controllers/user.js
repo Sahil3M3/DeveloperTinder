@@ -10,3 +10,10 @@ module.exports.getConnection=async (req,res,next) => {
     const result=await userService.getConnections(req);
     res.status(result.status).json(result.result);
 }
+
+module.exports.getFeed=async (req,res,next) => {
+ 
+    const result=await userService.getFeeds(req);
+    res.status(result.status).json(result.result);
+    
+}
